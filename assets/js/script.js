@@ -12,10 +12,8 @@ var four = moment(16, "H").isBefore();
 var five = moment(17, "H").isBefore();
 var times = [nine, ten, eleven, twelve, one, two, three, four, five]
 console.log(times);
-
-$("i").on("click",function(event){
-    console.log(event.target);
-})
+var storage = [];
+$(".saveBtn").on("click",storeValues);
 var hourNow = moment().format("h");
 console.log(hourNow);
 
@@ -32,6 +30,10 @@ middleBlock.each( function(i){
     } else {
         $(this).toggleClass("future")
     }
-    
-
 })
+function storeValues(){
+    var input = $(this).siblings("textarea").val().trim();
+    var valueId = $(this).parent().attr('id')
+    localStorage.setItem(valueId, input);
+
+}
