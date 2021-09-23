@@ -14,15 +14,13 @@ var times = [nine, ten, eleven, twelve, one, two, three, four, five]
 console.log(times);
 var storage = [];
 $(".saveBtn").on("click",storeValues);
-var hourNow = moment().format("h");
+var hourNow = moment().format("H");
 console.log(hourNow);
-
 var hoursInDay = $('span')
 console.log(hoursInDay[0].innerHTML)
-
 middleBlock.each( function(i){
     tempT = times[i];
-    tempH = hoursInDay[i].innerHTML
+    tempH = $(this).parent().attr('id');
     if (tempH == hourNow ){
         $(this).toggleClass("present");
     } else if (tempT){
@@ -30,10 +28,10 @@ middleBlock.each( function(i){
     } else {
         $(this).toggleClass("future")
     }
+    $(this).val(localStorage.getItem(tempH))  
 })
 function storeValues(){
     var input = $(this).siblings("textarea").val().trim();
     var valueId = $(this).parent().attr('id')
-    localStorage.setItem(valueId, input);
-
+    localStorage.setItem(valueId, input)
 }
